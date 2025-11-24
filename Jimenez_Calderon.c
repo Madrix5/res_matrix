@@ -7,81 +7,69 @@
 #include <stdio.h>
 
 
-void matrix4();
-void matrix3();
-void matrix2();
+// void matrix4();
+// void matrix3();
+// void matrix2();
 // void rango();
 // void determinante();
 // void confirmar();
 void limpiar_b();
+void menu (int *);
+void c_scan(int, int *);
 // void instrucciones();
-void menu();
 
-int main() {
-    instrucciones();
-    menu();
-}
+/*void matrix4() {
+    double matrix[4][5]; // Matriz (A|b) de 4 filas y 5 columnas
 
-void matrix4() {
-    double f1[];
-    double f2[];
-    double f3[];
-    double f4[];
-    double matrix[];
-
-    printf("Introduce la fila 1: ");
-    scanf(" %d", f1);
-    limpiar_b();
-    printf("Introduce la fila 2: ");
-    scanf(" %d", f2);
-    limpiar_b();
-    printf("Introduce la fila 3: ");
-    scanf(" %d", f3);
-    limpiar_b();
-    printf("Introduce la fila 4: ");
-    scanf(" %d", f4);
-    limpiar_b();
 }
 
 void matrix3() {
-    double f1[];
-    double f2[];
-    double f3[];
-    double matrix[];
+    double matrix[3][4];
+    int i;
 
-    printf("Introduce la fila 1: ");
-    scanf(" %d", f1);
-    limpiar_b();
-    printf("Introduce la fila 2: ");
-    scanf(" %d", f2);
-    limpiar_b();
-    printf("Introduce la fila 3: ");
-    scanf(" %d", f3);
-    limpiar_b();
+    i = 0;
+    while (i < 3) {
+        i++;
+        printf("Introduce la fila %d", i);
+        scanf(" %d", matrix[i][0]);
+        limpiar_b();
+    }
 }
 
 void matrix2() {
-    double f1[];
-    double f2[];
-    double matrix[];
 
-    printf("Introduce la fila 1: ");
-    scanf(" %d", f1);
-    limpiar_b();
-    printf("Introduce la fila 2: ");
-    scanf(" %d", f2);
-    limpiar_b();
-}
+} */
 
 void limpiar_b () {
     // Limpia el buffer para asegurarse que no queda nada.
     int c;
 
-    while (c = getchar() != '\n' || c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 
-void menu () {
+void c_scan(int res, int *select) {
+    if (res != 1 || (*select != 1 && *select != 2)) {
+        limpiar_b();
+        menu(select);
+    }
+}
+
+void menu (int *select) {
+    // Muestra un menú para elegir si se quieren ver las instrucciones o insertar la matriz ampliada
+    int res;
+
     printf("\n------- MENÚ -------\n\n");
     printf("1 - Instrucciones\n");
     printf("2 - Matriz ampliada (A|b)\n");
+
+    res = scanf(" %d", select);
+    c_scan(res, select);
+    return;
+}
+
+int main() {
+    int select = 0;
+
+    menu(&select);
+    printf("%d", select);
 }
