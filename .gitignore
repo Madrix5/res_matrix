@@ -3,3 +3,4 @@ a.out
 cmake-build-debug
 .idea/editor.xml
 /.idea
+*.xml
