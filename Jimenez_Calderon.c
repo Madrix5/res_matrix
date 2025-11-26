@@ -77,7 +77,7 @@
 
 // --- CONSTANTES ---
 #define MAX 20 // Indica la cantidad máxima de variables de la matriz A
-#define EPSILON 1e-9 // A partir de este valor (0.000000001) empieza a considerarlos distinto de 0.
+#define EPSILON 1e-15 // A partir de este valor empieza a considerar distinto de 0, ajustado al limite del tipo double
 
 // --- ESTRUCTURAS ---
 typedef struct {
@@ -155,7 +155,7 @@ int main() {
         printf(CYAN "\n============================================\n");
         printf("  ¿Desea resolver otro sistema? (s/n): ");
         scanf(" %c", &continuar);
-        printf("============================================\n\n" RESET);
+        printf("\n============================================\n\n" RESET);
 
     } while (continuar == 's' || continuar == 'S');
 
@@ -338,7 +338,6 @@ void triangularizarGauss(Sistema *sys, Config config) {
         }
     }
 }
-// ----------------------------------------------------------------------
 
 void analizarSistema(Sistema *sys) {
     // Se encarga de calcular el determinante y los rangos
