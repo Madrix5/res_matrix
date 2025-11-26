@@ -1,10 +1,10 @@
 /*****************************************************************************************
  *                                                                                       *
- * ASIGNATURA:     [NOMBRE DE LA MATERIA, EJ: MÉTODOS NUMÉRICOS]                         *
+ * ASIGNATURA:     Álgebra y matemática discreta                                         *
  *                                                                                       *
  * ALUMNO:         Adrián Jiménez Calderón                                               *
  * CORREO UNIR:    adrian.jimenez932@comunidadunir.net                                   *
- * FECHA:          [FECHA ACTUAL]                                                        *
+ * FECHA:          30-11-2025                                                            *
  *                                                                                       *
  * ------------------------------------------------------------------------------------- *
  *                                                                                       *
@@ -15,12 +15,14 @@
  * Implementa el algoritmo de Eliminación de Gauss con Pivoteo Parcial Escalado.         *                                                                            *
  *                                                                                       *
  * CARACTERISTICAS PRINCIPALES:                                                          *
- * - No toma los valores de la matriz b para hacer el vector de escalares                *
- * - Se puede elegir el tamaño de la matriz (aun que da mas trabajo al usuario)          *
- * - Te dice si el sistema es S.I., S.C.D o S.C.I                                        *
- * - Puedes decir si quieres ver los pasos o ir directo al resultado                     *
- * -
- * - Compilado con las flags -Wall -Wextra -Werror para minimizar errores de código      *
+ * - No toma los valores de la matriz b para hacer el vector de escalares.               *
+ * - Se puede elegir el tamaño de la matriz (aun que da mas trabajo al usuario).         *
+ * - Te dice si el sistema es S.I., S.C.D o S.C.I.                                       *
+ * - Puedes decir si quieres ver los pasos o ir directo al resultado.                    *
+ * - En el caso de que se den datos absurdos como puede ser una matriz con -7            *
+ *   incognitas o similares, la matriz se calculara igual con valores por defecto        *
+ *   y dará el resultado de estos valores por defecto.                                   *
+ * - Compilado con las flags -Wall -Wextra -Werror para minimizar errores de código.     *
  *                                                                                       *
  *  AL FINAL DEL CÓDIGO HAY UN FOOTER CON POSIBLES MEJORAS QUE NO ME HA DADO TIEMPO      *
  *  A IMPLEMENTAR.                                                                       *
@@ -64,14 +66,13 @@
 #define BG_MAGENTA  "\033[45m"
 #define BG_CYAN     "\033[46m"
 #define BG_WHITE    "\033[47m"
-// --- COLORES EXCLUSIVOS (NUEVOS) ---
-#define C_ORANGE    "\033[38;5;208m" // Naranja Vibrante (Para Análisis)
-#define C_VIOLET    "\033[38;5;141m" // Violeta Claro (Para Matriz Triangular)
-#define C_AQUA      "\033[38;5;51m"  // Aqua / Turquesa Neón (Para Resultados X)
-// --- COLORES NUEVOS PARA TITULOS ---
-#define C_PINK      "\033[38;5;201m" // Rosa Fuerte (Matriz Final)
-#define C_LIME      "\033[38;5;118m" // Lima Brillante (Analisis)
-#define C_GOLD      "\033[38;5;220m" // Dorado Intenso (Solución)
+// --- OTROS COLORES ---
+#define C_ORANGE    "\033[38;5;208m"
+#define C_VIOLET    "\033[38;5;141m"
+#define C_AQUA      "\033[38;5;51m"
+#define C_PINK      "\033[38;5;201m"
+#define C_LIME      "\033[38;5;118m"
+#define C_GOLD      "\033[38;5;220m"
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -258,7 +259,7 @@ void triangularizarGauss(Sistema *sys, Config config) {
     calcularEscalas(sys, s); // Cálculo inicial de escalas
 
     for (int k = 0; k < sys->n - 1; k++) {
-        // --- 1. MOSTRAR VECTOR DE ESCALAS ---
+        // Muestra el vector de escalas
         if (config.verPasos) {
             printf(GREEN "\n==================================================\n");
             printf(" ETAPA %d (Trabajando columna %d)\n", k + 1, k);
@@ -269,7 +270,6 @@ void triangularizarGauss(Sistema *sys, Config config) {
             printf(MAGENTA"   -> Se usara para calcular ratios: |A[i][%d]| / s[i]\n" RESET, k);
         }
 
-        // --- 2. PIVOTEO ---
         double max_ratio = -1.0;
         int p = k;
 
@@ -317,7 +317,7 @@ void triangularizarGauss(Sistema *sys, Config config) {
         for (int i = k + 1; i < sys->n; i++) {
             double factor = sys->A[i][k] / sys->A[k][k];
 
-            // Muestra multiplicador
+            // Muestra el multiplicador
             if (config.verPasos) {
                 printf(MAGENTA "   -> Fila %d: Multiplicador = A[%d][%d] / Pivote(%.4f) = %.4f / %.4f = %.4f\n" RESET,
                        i, i, k, sys->A[k][k], sys->A[i][k], sys->A[k][k], factor);
@@ -415,3 +415,12 @@ void clasificarYMostrar(Sistema *sys, Config config) {
         }
     }
 }
+
+/**********************************************************************************************************************
+ *                                                                                                                    *
+ * POSIBLES MEJORAS:                                                                                                  *
+ * - Dar la opción al usuario de si quiere tener en cuenta el vector b para los escalares.                            *
+ * - Introducir por filas en vez de elemento a elemento.                                                              *
+ * - Introducir la matriz entera por orden de filas o columnas, que pueda escoger el usuario como quiere ponerlo      *
+ *                                                                                                                    *
+ **********************************************************************************************************************/
