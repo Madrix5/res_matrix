@@ -174,6 +174,10 @@ void mostrarInstrucciones() {
     printf("INSTRUCCIONES:\n");
     printf("- Se mostrarán los multiplicadores y vectores de escala\n");
     printf("  si selecciona la opcion 1.\n");
+    printf("- Se mostrarán solamente la matriz dinal y la solución\n");
+    printf("  si selecciona la opción 2.\n");
+    printf("- Se mostrará solamente el resultado si selecciona la\n");
+    printf("  opción 3.\n");
     printf("- Debe poner elemento a elemento en la matriz, no por\n");
     printf("  no por filas, el programa le indica en que posición\n");
     printf("  está.\n");
@@ -326,8 +330,8 @@ void triangularizarGauss(Sistema *sys, Config config) {
             sys->b[i] -= factor * sys->b[k];
         }
 
-        // ! PREGUNTAR!!!!!!
         if (config.verPasos) {
+            // Solo indica un mensaje con la etapa en la que estamos
             char buffer[50];
             sprintf(buffer, "Matriz despues de etapa %d", k+1);
             imprimirEstado(sys, buffer);
@@ -336,13 +340,18 @@ void triangularizarGauss(Sistema *sys, Config config) {
 }
 // ----------------------------------------------------------------------
 
-void analizarSistema(Sistema *sys) { // ! PREGUNTAR!!!!!
+void analizarSistema(Sistema *sys) {
+    // Se encarga de calcular el determinante y los rangos
+
+    // --- DETERMINANTE ---
     sys->det = (sys->swaps % 2 == 0) ? 1.0 : -1.0;
     for (int i = 0; i < sys->n; i++) {
+        // Solo operamos con la diagonal, al ser triangular superior el resto de operandos serian 0.
         sys->det *= sys->A[i][i];
     }
     if (fabs(sys->det) < EPSILON) sys->det = 0.0;
 
+    // --- RANGO ---
     sys->rangoA = 0;
     sys->rangoAmp = 0;
 
@@ -363,10 +372,12 @@ void analizarSistema(Sistema *sys) { // ! PREGUNTAR!!!!!
     }
 }
 
-void resolverSustitucionAtras(Sistema *sys) { // ! PREGUNTAR!!!!!!
-    double x[MAX];
+void resolverSustitucionAtras(Sistema *sys) {
+    // Resuelve la matriz triangular superior por sustitución hacia atrás
+    double x[MAX]; // Guardaremos las soluciones aqui
 
     for (int i = sys->n - 1; i >= 0; i--) {
+        // Empezamos en la última fila y vamos subiendo
         double sum = 0.0;
         for (int j = i + 1; j < sys->n; j++) {
             sum += sys->A[i][j] * x[j];
@@ -380,7 +391,8 @@ void resolverSustitucionAtras(Sistema *sys) { // ! PREGUNTAR!!!!!!
     }
 }
 
-void clasificarYMostrar(Sistema *sys, Config config) { // ! PREGUNTAR !!!!!!
+void clasificarYMostrar(Sistema *sys, Config config) {
+    // Se encarga de ver que tipo de sistema tenemos comparando los rangos
     if (config.verTriangular) imprimirEstado(sys, "Matriz Triangular Final");
 
     printf(C_LIME"----------------------------------------\n");
