@@ -3,4 +3,4 @@ a.out
 cmake-build-debug
 /.idea
 *.xml
-exe
+exe*
