@@ -1,6 +1,6 @@
 .idea
 a.out
 cmake-build-debug
-/.idea
+/.idea*
 *.xml
 exe*
