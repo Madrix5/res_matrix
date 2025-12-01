@@ -58,6 +58,8 @@ Puedes obtener el código fuente directamente desde el repositorio oficial:
 ### Clonar repositorio
 ```bash
 git clone [https://github.com/Madrix5/res_matrix.git](https://github.com/Madrix5/res_matrix.git)
+```
+```bash
 cd res_matrix
 ```
 
