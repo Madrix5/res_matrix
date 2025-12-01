@@ -5,3 +5,4 @@ cmake-build-debug
 *.xml
 exe*
 CMakeLists.txt
+.DS_Store
