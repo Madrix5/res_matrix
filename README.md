@@ -36,7 +36,7 @@ El software no solo resuelve el sistema, sino que actúa como una herramienta de
     * Cálculo de Rangos ($R(A)$ y $R(A|b)$).
     * Detección automática de sistemas **S.C.D.**, **S.C.I.** y **S.I.**
 
-### 🛡️ Ingeniería de Software
+### 🛡️ Software
 * **Memoria Dinámica:** Uso de `malloc` y `free`. Sin límites de tamaño de matriz (solo limitado por tu RAM).
 * **Entrada Robusta:** Sistema de limpieza de buffer (`stdin`) que previene errores de lectura y permite copiar y pegar filas enteras.
 * **Benchmarking:** Cronómetro de CPU integrado para medir el rendimiento del algoritmo en segundos (`time.h`).
@@ -55,8 +55,17 @@ El software no solo resuelve el sistema, sino que actúa como una herramienta de
 
 Puedes obtener el código fuente directamente desde el repositorio oficial:
 
-### Opción 1: Clonar con Git (Recomendado)
-Abre tu terminal y ejecuta:
+### Clonar repositorio
 ```bash
 git clone [https://github.com/Madrix5/res_matrix.git](https://github.com/Madrix5/res_matrix.git)
 cd res_matrix
+```
+
+### Compilado y ejecución
+```bash
+gcc -lm -o res_matrix main.c
+```
+```bash
+./res_matrix
+```
+
