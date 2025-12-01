@@ -1,5 +1,9 @@
-<<<<<<< HEAD
-=======
+<div align="right">
+  
+[<img src="https://flagcdn.com/24x18/es.png" alt="Español" valign="middle"> **Español**](./README.es.md)
+
+</div>
+
 <div align="center">
 
 # 📐 Advanced Linear System Solver
@@ -11,85 +15,79 @@
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)
 
 <p align="center">
-  <strong>Solucionador de sistemas NxN de alto rendimiento, precisión científica y análisis de estabilidad numérica.</strong>
+  <strong>High-performance NxN system solver with scientific precision and numerical stability analysis.</strong>
 </p>
 
-[Reportar Error](https://github.com/Madrix5/res_matrix/issues) · [Solicitar Función](https://github.com/Madrix5/res_matrix/issues)
+[Report Bug](https://github.com/Madrix5/res_matrix/issues) · [Request Feature](https://github.com/Madrix5/res_matrix/issues)
 
 </div>
 
 ---
 
-## 📖 Descripción
+## 📖 Description
 
-Este proyecto es una implementación robusta en **C (Estándar C11)** diseñada para resolver sistemas de ecuaciones lineales de la forma $Ax = b$. A diferencia de los solucionadores académicos estándar, este programa implementa **Pivoteo Parcial Escalado** y gestión de **Memoria Dinámica**, permitiendo resolver sistemas complejos y matrices mal condicionadas (como Hilbert o Wilson) con la máxima precisión que permite la arquitectura de 64 bits.
+This project is a robust implementation in **C (C11 Standard)** designed to solve systems of linear equations of the form $Ax = b$. Unlike standard academic solvers, this program implements **Scaled Partial Pivoting** and **Dynamic Memory** management, allowing it to solve complex systems and ill-conditioned matrices (such as Hilbert or Wilson) with the maximum precision allowed by 64-bit architecture.
 
-El software no solo resuelve el sistema, sino que actúa como una herramienta de diagnóstico, analizando la estabilidad numérica, calculando determinantes, rangos y clasificando el tipo de sistema según el teorema de Rouché-Frobenius.
-
----
-
-## 🚀 Características Principales
-
-### 🧠 Motor Matemático Avanzado
-* **Algoritmo:** Eliminación Gaussiana con **Pivoteo Parcial Escalado** (minimiza el error de redondeo seleccionando el mejor pivote relativo a su fila).
-* **Precisión Extrema:** Configurado con `EPSILON 1e-15` para aprovechar el límite de los tipos `double`.
-* **Análisis Completo:**
-    * Determinante (con corrección de signo por intercambios).
-    * Cálculo de Rangos ($R(A)$ y $R(A|b)$).
-    * Detección automática de sistemas **S.C.D.**, **S.C.I.** y **S.I.**
-
-### 🛡️ Software
-* **Memoria Dinámica:** Uso de `malloc` y `free`. Sin límites de tamaño de matriz (solo limitado por tu RAM).
-* **Entrada Robusta:** Sistema de limpieza de buffer (`stdin`) que previene errores de lectura y permite copiar y pegar filas enteras.
-* **Benchmarking:** Cronómetro de CPU integrado para medir el rendimiento del algoritmo en segundos (`time.h`).
-
-### 🎨 Interfaz y Visualización (CLI)
-* **Renderizado Dinámico:** La tabla de la matriz se ajusta automáticamente al ancho del número más largo para mantener una alineación perfecta.
-* **Diagnóstico Visual:** Uso de códigos ANSI para alertas de colores:
-    * 🟢 **Verde:** Matriz estable.
-    * 🟡 **Amarillo:** Precaución (Pérdida de 4-8 dígitos).
-    * 🟠 **Naranja:** Peligro (Matriz inestable).
-    * 🔴 **Rojo:** Estabilidad crítica / Ruido numérico.
+The software not only solves the system but acts as a diagnostic tool, analyzing numerical stability, calculating determinants and ranks, and classifying the system type according to the Rouché-Frobenius theorem.
 
 ---
 
-## 📥 Descarga del Proyecto
+## 🚀 Key Features
 
-Puedes obtener el código fuente directamente desde el repositorio oficial:
+### 🧠 Advanced Mathematical Engine
+* **Algorithm:** Gaussian Elimination with **Scaled Partial Pivoting** (minimizes rounding errors by selecting the best pivot relative to its row).
+* **Extreme Precision:** Configured with `EPSILON 1e-15` to leverage the full limit of `double` types.
+* **Complete Analysis:**
+    * Determinant (with sign correction for row swaps).
+    * Rank Calculation ($R(A)$ and $R(A|b)$).
+    * Automatic detection of **Determinate**, **Indeterminate**, and **Inconsistent** systems.
 
-### Clonar repositorio
+### 🛡️ Software Engineering
+* **Dynamic Memory:** Uses `malloc` and `free`. No matrix size limits (limited only by your RAM).
+* **Robust Input:** Input buffer cleaning system (`stdin`) that prevents reading errors and allows copying and pasting entire rows.
+* **Benchmarking:** Integrated CPU chronometer to measure algorithm performance in seconds (`time.h`).
+
+### 🎨 Interface & Visualization (CLI)
+* **Dynamic Rendering:** The matrix table automatically adjusts to the width of the longest number to maintain perfect alignment.
+* **Visual Diagnosis:** Uses ANSI color codes for alerts:
+    * 🟢 **Green:** Stable matrix.
+    * 🟡 **Yellow:** Caution (Loss of 4-8 precision digits).
+    * 🟠 **Orange:** Danger (Unstable matrix).
+    * 🔴 **Red:** Critical stability / Numerical noise.
+
+---
+
+## 📥 Download
+
+You can get the source code directly from the official repository:
+
+### Option 1: Clone with Git (Recommended)
+Open your terminal and run:
 ```bash
 git clone [https://github.com/Madrix5/res_matrix.git](https://github.com/Madrix5/res_matrix.git)
 ```
+#### Flags breakdown:
+
+* std=c11: Forces the use of the C11 standard.
+
+* lm: Links the math library (math.h).
+
+* Wall -Wextra: Enables all useful warnings.
+
+* Werror: Treats warnings as errors (ensures clean code).
+  
 ```bash
 cd res_matrix
 ```
-
-### Compilado y ejecución
-```bash
-gcc main.c -o res_matrix -std=c11 -lm -Wall -Wextra -Werror
 ```
-
-#### Desglose de flags:
-
-* std=c11: Fuerza el uso del estándar C11.
-
-* lm: Enlaza la librería matemática (math.h).
-
-* Wall -Wextra: Activa todas las advertencias útiles.
-
-* Werror: Trata las advertencias como errores (asegura un código limpio).
-
-```bash
 ./res_matrix
 ```
 
-## 📸 Ejemplos de Uso
+📸 Usage Examples
+1. Main Menu & Interaction
 
-### 1. Menú Principal e Interacción
-Al ejecutar el programa, el sistema guía al usuario a través de menús robustos y claros. Aquí se muestra cómo seleccionar una matriz de la base de datos interna:
-
-```text
+Upon execution, the system guides the user through robust menus. Here is how to select a matrix from the internal database:
+```
 =======================================================
   SOLUCIONADOR DE SISTEMAS LINEALES (GAUSS ESCALADO) 
 =======================================================
@@ -111,11 +109,11 @@ Al ejecutar el programa, el sistema guía al usuario a través de menús robusto
  +----------------------+----------------------+----------------------+----------------------+----------------------+
  |                    7 |                   10 |                    8 |                    7 |                   32 |
  +----------------------+----------------------+----------------------+----------------------+----------------------+
- |                    0 |     2.28571428571429 |     4.28571428571429 |     5.71428571428571 |     13.7142857142857 |
+ |                    0 |      2.28571428571429 |      4.28571428571429 |      5.71428571428571 |      13.7142857142857 |
  +----------------------+----------------------+----------------------+----------------------+----------------------+
- |                    0 |                    0 |                  0.2 |                  0.6 |                  0.8 |
+ |                    0 |                    0 |                   0.2 |                   0.6 |                   0.8 |
  +----------------------+----------------------+----------------------+----------------------+----------------------+
- |                    0 |                    0 |                    0 | 0.000292968750000003 | 0.000292968750000023 |
+ |                    0 |                    0 |                    0 |  0.000292968750000003 |  0.000292968750000023 |
  +----------------------+----------------------+----------------------+----------------------+----------------------+
 
 ----------------------------------------
@@ -140,19 +138,16 @@ Al ejecutar el programa, el sistema guía al usuario a través de menús robusto
 ----------------------------------------
 ```
 
-## 👤 Autor
+### 👤 Author
+Adrián Jiménez Calderón
 
-**Adrián Jiménez Calderón**
-* **Fecha:** Noviembre 2025
-* **Contacto:** [Perfil de GitHub](https://github.com/Madrix5) [email](adrian.jimdev@gmail.com)
+* Date: November 2025
 
----
+* Contact: GitHub Profile | Email
 
-## 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia **MIT**. Esto significa que eres libre de usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y/o vender copias del software, siempre que se incluya el aviso de copyright original.
-
-```text
+### 📄 License
+This project is distributed under the MIT license. This means you are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, provided the original copyright notice is included.
+```
 MIT License
 
 Copyright (c) 2025 Adrián Jiménez Calderón
@@ -174,5 +169,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
->>>>>>> ed849f6e1b57489cf24688fd9db956d35fc53e5d
+```
