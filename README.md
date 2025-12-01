@@ -75,7 +75,7 @@ git clone [https://github.com/Madrix5/res_matrix.git](https://github.com/Madrix5
 * Wall -Wextra: Enables all useful warnings.
 
 * Werror: Treats warnings as errors (ensures clean code).
-* 
+  
 ```bash
 
 cd res_matrix
