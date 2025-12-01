@@ -65,9 +65,100 @@ cd res_matrix
 
 ### Compilado y ejecución
 ```bash
-gcc -lm -o res_matrix main.c
+gcc main.c -o res_matrix -std=c11 -lm -Wall -Wextra -Werror
 ```
 ```bash
 ./res_matrix
 ```
+
+## 📸 Ejemplos de Uso
+
+### 1. Menú Principal e Interacción
+Al ejecutar el programa, el sistema guía al usuario a través de menús robustos y claros. Aquí se muestra cómo seleccionar una matriz de la base de datos interna:
+
+```text
+=======================================================
+  SOLUCIONADOR DE SISTEMAS LINEALES (GAUSS ESCALADO) 
+=======================================================
+
+  SELECCIONE MODO DE ENTRADA:
+  1. Introducir Matriz Manualmente
+  2. Cargar Matriz de Prueba (Base de Datos)
+>> Opcion (1-2): 2
+
+--- BASE DE DATOS DE MATRICES ---
+...
+5. Matriz de Hilbert 4x4 (Prueba de precision extrema)
+6. Magnitudes Extremas (Prueba de escalado)
+7. Matriz de Wilson 4x4 (Muy mal condicionada)
+...
+>> Seleccione prueba (1-17): 7
+
+--- MATRIZ TRIANGULAR FINAL ---
+ +----------------------+----------------------+----------------------+----------------------+----------------------+
+ |                    7 |                   10 |                    8 |                    7 |                   32 |
+ +----------------------+----------------------+----------------------+----------------------+----------------------+
+ |                    0 |     2.28571428571429 |     4.28571428571429 |     5.71428571428571 |     13.7142857142857 |
+ +----------------------+----------------------+----------------------+----------------------+----------------------+
+ |                    0 |                    0 |                  0.2 |                  0.6 |                  0.8 |
+ +----------------------+----------------------+----------------------+----------------------+----------------------+
+ |                    0 |                    0 |                    0 | 0.000292968750000003 | 0.000292968750000023 |
+ +----------------------+----------------------+----------------------+----------------------+----------------------+
+
+----------------------------------------
+ ANALISIS DE RESULTADOS:
+ Determinante: 165
+ Rango(A): 4
+ Rango(A|b): 4
+ Ratio de Pivotes: 2.4e+04
+ [PRECAUCION] Matriz mal condicionada 
+ > Se han perdido entre 4 y 8 digitos. (Ej: Matriz de Wilson/Hilbert)
+----------------------------------------
+ RESULTADO: SISTEMA COMPATIBLE DETERMINADO (Solucion unica)
+
+>>> SOLUCION FINAL:
+  x[0] = 1
+  x[1] = 1
+  x[2] = 1
+  x[3] = 1
+
+----------------------------------------
+ Tiempo de Computo (CPU): 0.000005 s 
+----------------------------------------
+```
+
+## 👤 Autor
+
+**Adrián Jiménez Calderón**
+* **Fecha:** Noviembre 2025
+* **Contacto:** [Perfil de GitHub](https://github.com/Madrix5) [email](adrian.jimdev@gmail.com)
+
+---
+
+## 📄 Licencia
+
+Este proyecto se distribuye bajo la licencia **MIT**. Esto significa que eres libre de usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y/o vender copias del software, siempre que se incluya el aviso de copyright original.
+
+```text
+MIT License
+
+Copyright (c) 2025 Adrián Jiménez Calderón
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
