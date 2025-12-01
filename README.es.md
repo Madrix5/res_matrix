@@ -1,6 +1,6 @@
 <div align="right">
   
-[<img src="https://flagcdn.com/24x18/es.png" alt="Español" valign="middle"> **Leer en Español**](./README.es.md)
+[<img src="[https://flagcdn.com/24x18/es.png](https://flagpedia.net/data/flags/emoji/apple/160x160/gb.png)" alt="English" valign="middle"> **English**](./README.md)
 
 </div>
 
