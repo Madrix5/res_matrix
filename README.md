@@ -67,6 +67,17 @@ cd res_matrix
 ```bash
 gcc main.c -o res_matrix -std=c11 -lm -Wall -Wextra -Werror
 ```
+
+Desglose de flags:
+
+-std=c11: Fuerza el uso del estándar C11.
+
+-lm: Enlaza la librería matemática (math.h).
+
+-Wall -Wextra: Activa todas las advertencias útiles.
+
+-Werror: Trata las advertencias como errores (asegura un código limpio).
+
 ```bash
 ./res_matrix
 ```
