@@ -352,14 +352,14 @@ int gestionarMenuPruebas(Sistema *sys) {
     printf("\n" B_MAGENTA "--- BASE DE DATOS DE MATRICES ---" RESET "\n");
     printf("1. Basica 3x3\n2. Pivoteo Obligatorio\n3. Incompatible\n4. Indeterminado\n");
     printf(B_CYAN "--- AVANZADO ---" RESET "\n");
-    printf("5. Hilbert 4x4\n6. Magnitudes Extremas\n7. Wilson 4x4 (Mal Condicionada)\n8. Irracionales\n");
+    printf("5. Hilbert 4x4\n6. Magnitudes Extremas\n7. Wilson 4x4\n8. Irracionales\n");
     printf(B_CYAN "--- STRESS ---" RESET "\n");
     printf("9. Pascal 12x12\n10. Tridiagonal 15x15\n11. Maximo 20x20\n12. Binaria 18x18\n");
     printf("13. Vandermonde 4x4\n14. Casi Singular\n");
     printf(B_CYAN "--- TEST ALERTAS (DIAGNOSTICO) ---" RESET "\n");
-    printf("15. Test Precaucion (Ratio 1e5)\n");
-    printf("16. Test Peligro (Ratio 1e9)\n");
-    printf("17. Test Critico (Ratio 1e14)\n");
+    printf("15. Test Precaucion\n");
+    printf("16. Test Peligro\n");
+    printf("17. Test Critico\n");
 
     do {
         printf(B_YELLOW ">> Seleccione prueba (1-17): " RESET);
@@ -687,7 +687,7 @@ void clasificarYMostrar(Sistema *sys, Config config, double tiempo_cpu) {
     }
     else if (ratio >= 1e4) {
         printf(B_YELLOW " [PRECAUCION] Matriz mal condicionada " RESET "\n");
-        printf(YELLOW " > Se han perdido entre 4 y 8 digitos. (Ej: Matriz de Wilson/Hilbert)\n" RESET);
+        printf(YELLOW " > Se han perdido entre 4 y 8 digitos.\n" RESET);
     }
     else {
         printf(B_GREEN " [OK] Matriz estable.\n" RESET);
