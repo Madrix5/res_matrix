@@ -1,125 +1,66 @@
-📐 Linear System Solver (Gaussian Elimination)
-Un solucionador avanzado de sistemas de ecuaciones lineales (Ax=b) desarrollado en C. Implementa el método de Eliminación de Gauss con Pivoteo Parcial Escalado para maximizar la precisión numérica y minimizar errores de redondeo en sistemas mal condicionados.
+<div align="center">
 
-El proyecto destaca por su interfaz de consola coloreada, gestión dinámica de memoria, análisis de estabilidad numérica y un banco de pruebas integrado con matrices patológicas conocidas.
+# 📐 Advanced Linear System Solver
+### Gaussian Elimination with Scaled Partial Pivoting
 
-🚀 Características Principales
-🧠 Motor Matemático
+![Language](https://img.shields.io/badge/Language-C99-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)
 
-Algoritmo Robusto: Eliminación Gaussiana con Pivoteo Parcial Escalado. Calcula vectores de escala para seleccionar el mejor pivote relativo, crucial para matrices con coeficientes de magnitudes dispares.
+<p align="center">
+  <strong>Solucionador de sistemas NxN de alto rendimiento, precisión científica y análisis de estabilidad numérica.</strong>
+</p>
 
-Precisión Científica: Ajustado a EPSILON 1e-15 para aprovechar la máxima precisión del tipo de dato double, filtrando ruido numérico.
+[Report Bug] . [Request Feature]
 
-Análisis Rouché-Frobenius: Calcula determinantes y rangos (Rango(A) vs Rango(A∣b)) para clasificar sistemas en:
+</div>
 
-Compatible Determinado (Solución Única).
+---
 
-Compatible Indeterminado (Infinitas Soluciones).
+## 📖 Descripción
 
-Incompatible (Sin Solución).
+Este proyecto es una implementación robusta en **C** diseñada para resolver sistemas de ecuaciones lineales de la forma $Ax = b$. A diferencia de los solucionadores académicos estándar, este programa implementa **Pivoteo Parcial Escalado** y gestión de **Memoria Dinámica**, permitiendo resolver sistemas complejos y matrices mal condicionadas (como Hilbert o Wilson) con la máxima precisión que permite la arquitectura de 64 bits.
 
-🛡️ Ingeniería de Software
+El software no solo resuelve el sistema, sino que actúa como una herramienta de diagnóstico, analizando la estabilidad numérica, calculando determinantes, rangos y clasificando el tipo de sistema según el teorema de Rouché-Frobenius.
 
-Memoria Dinámica: Uso de malloc y free para manejar matrices de tamaño arbitrario (N×N), limitadas solo por la RAM del sistema (sin arrays estáticos fijos).
+---
 
-Entrada Robusta: Sistema de limpieza de buffer (stdin) que previene errores de lectura y permite la introducción de datos copiando y pegando filas enteras.
+## 🚀 Características Principales
 
-Benchmarking: Cronómetro de CPU integrado para medir el tiempo de cómputo exacto del algoritmo.
+### 🧠 Motor Matemático Avanzado
+* **Algoritmo:** Eliminación Gaussiana con **Pivoteo Parcial Escalado** (minimiza el error de redondeo seleccionando el mejor pivote relativo a su fila).
+* **Precisión Extrema:** Configurado con `EPSILON 1e-15` para aprovechar el límite de los tipos `double` en C.
+* **Análisis Completo:**
+    * Determinante (con corrección de signo por intercambios).
+    * Cálculo de Rangos ($R(A)$ y $R(A|b)$).
+    * Detección automática de sistemas **S.C.D.**, **S.C.I.** y **S.I.**
 
-🎨 Interfaz y Visualización
+### 🛡️ Software
+* **Memoria Dinámica:** Uso de `malloc` y `free`. Sin límites de tamaño de matriz (solo limitado por tu RAM).
+* **Entrada Robusta:** Sistema de limpieza de buffer (`stdin`) que permite copiar y pegar filas enteras desde Excel o texto sin errores de lectura.
+* **Benchmarking:** Cronómetro de CPU integrado para medir el rendimiento del algoritmo en segundos (`time.h`).
 
-Tabla Dinámica: Algoritmo de renderizado que calcula el ancho de columna óptimo en tiempo real para alinear perfectamente los decimales en la consola.
+### 🎨 Interfaz y Visualización (CLI)
+* **Renderizado Dinámico:** La tabla de la matriz se ajusta automáticamente al ancho del número más largo para mantener una alineación perfecta.
+* **Diagnóstico Visual:** Uso de códigos ANSI para alertas de colores:
+    * 🟢 **Verde:** Matriz estable.
+    * 🟡 **Amarillo:** Precaución (Pérdida de 4-8 dígitos).
+    * 🟠 **Naranja:** Peligro (Matriz inestable).
+    * 🔴 **Rojo:** Estabilidad crítica / Ruido numérico.
 
-Diagnóstico Visual (Colores ANSI):
+---
 
-🟢 Verde: Sistema estable / Solución exitosa.
+## 🛠️ Instalación y Compilación
 
-🟡 Amarillo: Precaución (Pérdida de 4-8 dígitos de precisión).
+Este proyecto no requiere dependencias externas más allá de la librería estándar y matemática.
 
-🟠 Naranja: Peligro (Matriz inestable).
+### Prerrequisitos
+* Compilador GCC (o Clang).
+* Make (opcional).
 
-🔴 Rojo/Fondo Rojo: Error crítico / Estabilidad catastrófica.
+### Compilación (Linux / macOS / WSL)
+Se recomienda usar las flags de advertencia para asegurar la integridad del código.
 
-🧪 Banco de Pruebas Integrado
-El programa incluye una base de datos interna con 17 casos de prueba para validar el algoritmo bajo estrés:
-
-ID	Nombre	Propósito de la Prueba
-1-4	Básicos	Validación de lógica SCD, SCI y SI.
-5	Matriz de Hilbert	Test de mal condicionamiento clásico.
-6	Magnitudes Extremas	Prueba del vector de escalado (10 
-10
-  vs 10 
-−10
- ).
-7	Matriz de Wilson	Matriz patológica muy mal condicionada.
-8	Irracionales	Precisión con π, e y raíces.
-9	Pascal 12x12	Desbordamiento y números grandes.
-11	Estrés 20x20	Rendimiento y visualización en matrices grandes.
-15-17	Tests de Alerta	Verificación del sistema de diagnóstico de errores numéricos.
-⚙️ Instalación y Compilación
-Este proyecto no requiere librerías externas no estándar. Se compila con gcc.
-
-Clonar el repositorio:
-
-Bash
-git clone https://github.com/tu-usuario/linear-system-solver.git
-cd linear-system-solver
-Compilar (Linux/Mac/WSL): Es recomendable usar flags de advertencia para asegurar la calidad del código.
-
-Bash
-gcc main.c -o solver -lm -Wall -Wextra
-(Nota: -lm es necesario para linkear la librería matemática math.h).
-
-Ejecutar:
-
-Bash
-./solver
-📖 Uso
-Al iniciar, el programa ofrece un menú interactivo:
-
-Modo de Entrada:
-
-Manual: Introduce N y luego los coeficientes fila a fila (puedes copiar y pegar desde un excel o texto).
-
-Base de Datos: Selecciona una de las 17 matrices de prueba.
-
-Opción de Escalado:
-
-Elige si deseas incluir el vector de términos independientes b en el cálculo del factor de escala (Criterio académico vs estándar).
-
-Nivel de Detalle:
-
-1. Ver TODO: Muestra paso a paso la triangularización, vectores de escala, multiplicadores y operaciones.
-
-2. Matriz Final: Muestra solo el resultado triangular y la solución.
-
-3. Solo Resultado: Muestra valores de X y métricas.
-
-📸 Capturas (Ejemplo de Salida)
-Plaintext
---- ANALISIS DE RESULTADOS ---
-Determinante: 1.00000000000000
-Rango(A): 3
-Rango(A|b): 3
-----------------------------------------
-RESULTADO: SISTEMA COMPATIBLE DETERMINADO (Solucion unica)
-
->>> SOLUCION FINAL:
-  x[0] = 1.00000000000000
-  x[1] = 1.00000000000000
-  x[2] = 1.00000000000000
-
-----------------------------------------
- Tiempo de Computo (CPU): 0.000004 s 
-----------------------------------------
-👤 Autor
-Adrián Jiménez Calderón
-
-Estudiante de Ingeniería Informática
-
-Asignatura: Álgebra y Matemática Discreta
-
-Fecha: Noviembre 2025
-
-📄 Licencia
-Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
+```bash
+gcc -Wall -Wextra -Werror -lm -o gauss main.c
